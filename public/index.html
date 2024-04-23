@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Facebook Guard & API Documentation</title>
+    <title>Facebook Guard</title>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.css">
  <style>
@@ -13,9 +13,16 @@
     font-family: Arial, sans-serif;
     overflow-y: scroll;
 }
-
+.container {
+         background-color: #FFFFFFFF;
+         border-radius: 10px;
+         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+         padding: 20px;
+         margin: 20px auto;
+         overflow: auto;
+}
 header {
-    background-color: #333;
+    background-color: #ffffff;
     color: white;
     padding: 20px;
     text-align: center;
@@ -124,8 +131,10 @@ h1 {
       </style>
 </head>
 <body>
-    <header>
+    <div class="wrapper-container">
+         <div class="container">
           <h1>Guard Your Profile</h1>
+        <p>A simple guard facebook profile using access token by Mark Hitsuraan.</p>
       <div id="particles-js"></div>
     </header>
     <section id="api-docs">
@@ -142,7 +151,7 @@ h1 {
        </section>
     <footer>
       <p>Developed by<a href="https://www.facebook.com/mark.dev69">Markdevs69</a></p>
-        <p>All Rights Reserved &copyright; 2024.</p>
+        <p>All Rights Reserved & ©Copyright by markdevs69</p>
     </footer>
       <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="particles.json"></script>
