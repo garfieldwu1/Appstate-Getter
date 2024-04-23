@@ -1,82 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-   <head>
-      <meta charset="UTF-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Facebook Guard</title>
-   </head>
-   <body>
-     <header>
-          <h1>Guard Your Profile</h1>
-      <div id="particles-js"></div>
-    </header>
-    <section id="api-docs">
-      <form id="guardForm">
-          <label for="token">Access Token:</label>
-          <input type="text" id="token" name="token" placeholder="Enter your access token" required>
-          <label for="enable">Enable:</label>
-          <input type="text" id="enable" name="enable" placeholder="Enter true(on) if false(off)" required>
-          <button type="submit">Guard Profile</button>
-      </form>
-      <div class="loading" id="loading">Loading...</div>
-      <div class="response" id="response"></div>
-      <div class="error" id="error">    </div>
-       </section>
-    <footer>
-      <p>Developed by<a href="https://www.facebook.com/mark.dev69">Markdevs69</a></p>
-        <p>All Rights Reserved &copy; 2024.</p>
-    </footer>
-      <style>
-         body {
-         margin: 0;
-         padding: 20px;
-         font-family: 'Poppins', sans-serif;
-         background: #FFFFFFFF;
-         color: #000000FF;
-         display: flex;
-         justify-content: center;
-         align-items: center;
-         }
-         .container {
-         background-color: #FFFFFFFF;
-         border-radius: 10px;
-         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-         padding: 20px;
-         margin: 20px auto;
-         overflow: auto;
-         }
-         .form-item {
-         padding: 8px;
-         }
-         h1 {
-         color: #343a40;
-         }
-         .form-item label {
-         font-size: 13px;
-         color: #495057;
-         margin-bottom: 5px; 
-         display: block; 
-         }
-         input, button {
-         background: #FFFFFFFF;
-         color: #000000FF; 
-         border: solid 1px #222;
-         box-sizing: border-box;
-         width: 100%;
-         margin-bottom: 10px;
-         padding: 10px;
-         border-radius: 4px;
-         font-size: 16px;
-         }
-         button {
-         cursor: none;
-         color: #0a0a0a;
-         background-color: #ededed;
-         }
-         button:hover {
-         background: #CCC;
-         }/* Guard Css */
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facebook Guard & API Documentation</title>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.css">
+ <style>
+ body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    overflow-y: scroll;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+#api-docs {
+    padding: 20px;
+}
+
+.code-container {
+    position: relative;
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow-x: auto;
+}
+
+.copy-btn-container {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.copy-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+footer a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+}
+    }/* Guard Css */
 #particles-js {
    position: fixed;
    width: 100%;
@@ -137,6 +122,37 @@ h1 {
             display: none;
         }
       </style>
+</head>
+<body>
+    <header>
+          <h1>Guard Your Profile</h1>
+      <div id="particles-js"></div>
+    </header>
+    <section id="api-docs">
+      <form id="guardForm">
+          <label for="token">Access Token:</label>
+          <input type="text" id="token" name="token" placeholder="Enter your access token" required>
+          <label for="enable">Enable:</label>
+          <input type="text" id="enable" name="enable" placeholder="Enter true(on) if false(off)" required>
+          <button type="submit">Guard Profile</button>
+      </form>
+      <div class="loading" id="loading">Loading...</div>
+      <div class="response" id="response"></div>
+      <div class="error" id="error">    </div>
+       </section>
+    <footer>
+      <p>Developed by<a href="https://www.facebook.com/mark.dev69">Markdevs69</a></p>
+        <p>All Rights Reserved &copyright; 2024.</p>
+    </footer>
+      <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="particles.json"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            particlesJS.load('particles-js', 'particles.json', function () {
+                console.log('particles.js loaded');
+            });
+        });
       <script>
          function copyCode() {
     var code = document.querySelector('.code-container code');
