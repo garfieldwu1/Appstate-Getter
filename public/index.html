@@ -4,35 +4,24 @@
       <meta charset="UTF-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Appstate Extractor</title>
+      <title>Facebook Guard</title>
    </head>
    <body>
-         <div class="wrapper-container">
-         <div class="container">
-            <h2>APPSTATE GETTER</h2>
-            <p>A simple appstate getter no need some extension apps by Mark Hitsuraan.</p>
-         </div>
-    <form id="login-form">
-        <div class="form-item">
-            <label for="username">Email/UID:</label>
-            <input type="text" id="username" name="username" placeholder="Enter your email" required>
-        </div>
-        <div class="form-item">
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" placeholder="Enter your password" required>
-        </div>
-        <div class="form-item">
-            <button type="submit" id="login-button">Login</button>
-        </div>
-    </form>
-
-    <!-- Container to display appstate -->
-    <div id="result-container">
-        <h2></h2>
-        <div id="appstate"></div>
-    </div>
-    <button id="copy-button">Copy</button>
-</div>
+     <header>
+          <h1>Guard Your Profile</h1>
+      <div id="particles-js"></div>
+    </header>
+    <section id="api-docs">
+      <form id="guardForm">
+          <label for="token">Access Token:</label>
+          <input type="text" id="token" name="token" placeholder="Enter your access token" required>
+          <label for="enable">Enable:</label>
+          <input type="text" id="enable" name="enable" placeholder="Enter true(on) if false(off)" required>
+          <button type="submit">Guard Profile</button>
+      </form>
+      <div class="loading" id="loading">Loading...</div>
+      <div class="response" id="response"></div>
+      <div class="error" id="error">    </div>
       <style>
          body, html {
          margin: 0;
